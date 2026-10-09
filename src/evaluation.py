@@ -1,4 +1,4 @@
-"""ECC MLE evidence: cohort errors, calibration caveats and artifact provenance."""
+"""Cohort errors, calibration and metadata for the saved model."""
 import hashlib
 import importlib.metadata
 import platform

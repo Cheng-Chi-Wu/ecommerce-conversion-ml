@@ -1,4 +1,4 @@
-"""Generate and execute two aggregate-only portfolio notebooks."""
+"""Build and execute the customer journey and model analysis notebooks."""
 import argparse
 import os
 
@@ -73,9 +73,7 @@ display(Image(filename=str(REPORTS / 'figures/event_trend.png')))
                'Form hypotheses about abandonment and recurring visits, then test a reminder '
                'against a randomized no-contact holdout. High propensity does not prove uplift. '
                'Anonymous categories and missing prices cannot support product names or revenue estimates. '
-               'Review `reports/results.md` for recommendations tied to the measured results.\n\n'
-               '**Practice:** explain why event ratios, visitor conversion and ordered funnel conversion '
-               'have different denominators. Modify a copy of the SQL to compare weekly visitor rates.'),
+               'Review `reports/results.md` for the measured results and proposed experiments.'),
         ],
         '02_conversion_model.ipynb': [
             md('# Next-day purchase prediction\n\n'
@@ -140,9 +138,7 @@ print('Model version:', bundle['metadata']['model_version'])
                'Compare hourly or event-triggered observations on a fresh forward holdout. '
                'Preserve the full 24h horizon purge and avoid repeated test tuning. '
                'For a product intervention, evaluate incremental transactions in a randomized '
-               'holdout, not only offline propensity.\n\n'
-               '**Practice:** explain why a high ROC-AUC can coexist with low precision under '
-               'rare outcomes, and why the best test AP should not determine model selection.'),
+               'holdout, not only offline propensity.'),
         ],
     }
     for name, cells in definitions.items():
@@ -152,7 +148,7 @@ print('Model version:', bundle['metadata']['model_version'])
         notebook.metadata['language_info'] = {'name': 'python'}
         nbf.validate(notebook)
         nbf.write(notebook, ROOT/'notebooks'/name)
-    print('Built two valid portfolio notebooks.', flush=True)
+    print('Built customer journey and model notebooks.', flush=True)
 
 
 def execute_notebooks(name=None):

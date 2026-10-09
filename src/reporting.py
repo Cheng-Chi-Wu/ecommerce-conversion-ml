@@ -34,7 +34,7 @@ def write_results():
     low, high = errors['uncertainty']['pr_auc_ap_95pct_interval']
     import_errors = results['optional_models'].get('import_errors', {})
     boosting_note = ('The installed XGBoost wheel could not load its missing macOS OpenMP runtime '
-                     '(`libomp`). No boosting metrics are invented.'
+                     '(`libomp`).'
                      if 'libomp' in ' '.join(import_errors.values()) else
                      'Unavailable optional models are omitted; see the recorded import status.')
     section = f'''The audited source contains **{data['files']['events.csv']['rows']:,} events** from
@@ -72,7 +72,30 @@ Boosting status: **{results['optional_models']['boosting']}**.
     assert content.count(BEGIN) == content.count(END) == 1
     prefix, remainder = content.split(BEGIN)
     _, suffix = remainder.split(END)
-    readme.write_text(prefix + BEGIN + '\n\n' + section + '\n' + END + suffix)
+    comparison = []
+    for row in results['test_metrics']:
+        validation = next(item for item in results['validation_metrics']
+                          if item['model'] == row['model'])
+        comparison.append({'Model': row['model'],
+                           'Validation AP': f"{validation['pr_auc_ap']:.4f}",
+                           'Test AP': f"{row['pr_auc_ap']:.4f}",
+                           'Test precision, top 1%': f"{row['precision_at_1pct']:.2%}"})
+    summary = f'''The analysis starts with **{data['files']['events.csv']['rows']:,} events** from
+**{data['files']['events.csv']['unique_visitors']:,} visitors**. SQL finds **{conversion['24h_cart_event_abandonment_rate']:.2%}**
+cart-event abandonment: no later same-item purchase within 24 hours, among carts
+with complete follow-up. Repeated additions count as separate cart events.
+
+The prediction dataset has **{audit['rows']:,} visitor-day snapshots**. The test
+period has **{best['rows']:,} snapshots**, of which **{best['positives']:,}** include a
+next-day purchase (**{best['positive_rate']:.4%}** prevalence).
+
+{markdown_table(pd.DataFrame(comparison))}
+
+**{results['selected_model']}** was selected using validation AP. Its top
+**{best['k']:,}** test snapshots contain **{best['precision_at_1pct']:.2%}** purchasers.
+AP means average precision; the top-1% column measures ranking at a fixed capacity.
+'''
+    readme.write_text(prefix + BEGIN + '\n\n' + summary + '\n' + END + suffix)
     split_rows = []
     for name in ['train', 'validation', 'test', 'purged']:
         row = audit['splits'][name]
@@ -85,7 +108,14 @@ Boosting status: **{results['optional_models']['boosting']}**.
                                       category_performance.visitors.ge(1000)].nlargest(5, 'transaction_events')
     leaders = leaders[['entity', 'views', 'carts', 'transaction_events', 'visitors', 'visitor_conversion_rate']]
     leaders['visitor_conversion_rate'] = leaders.visitor_conversion_rate.map(lambda x: f'{x:.2%}')
-    (REPORTS/'results.md').write_text('# Results and interpretation\n\n' + section +
+    (REPORTS/'results.md').write_text('# Results and interpretation\n\n' +
+        section.replace('(reports/', '(') +
+        '\n## Figures\n\n'
+        '![Ordered visitor funnel](figures/funnel.png)\n\n'
+        '![Daily event activity](figures/event_trend.png)\n\n'
+        '![Selected-model precision-recall curve](figures/precision_recall_curve.png)\n\n'
+        '![Validation-threshold confusion matrix](figures/confusion_matrix.png)\n\n'
+        '![Model coefficients](figures/feature_importance.png)\n' +
         '\n## Chronological partitions\n\n' + markdown_table(pd.DataFrame(split_rows)) +
         '\n\nPurged rows span two separate boundary dates; their min/max are not one continuous excluded interval.\n'
         '\n## Category activity\n\nTop categories by transaction item events, with at least 1,000 observed visitors.\n\n' +

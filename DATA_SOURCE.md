@@ -9,8 +9,7 @@ The dataset was collected by its provider, not by this project's author.
 The original files are `events.csv`, `item_properties_part1.csv`,
 `item_properties_part2.csv`, and `category_tree.csv`. Obtain them from the source,
 retain its terms, and put them in `data/raw/`. Raw files, row-level derivatives,
-SQLite databases and trained models are excluded from Git. No external notebook
-code was used to build this project.
+SQLite databases and trained models are excluded from Git.
 
 Observed item properties form a timestamped change log. Category IDs and
 availability have readable meanings; other property values are anonymized.

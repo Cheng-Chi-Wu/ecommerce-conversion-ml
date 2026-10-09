@@ -1,8 +1,8 @@
 {
   "artifact_schema_version": 1,
-  "model_version": "v1-8b6b09610042-efc7dccf",
-  "code_sha256": "8b6b0961004216d9dde16e72a7d8b89f8adcd81fd346f4e490c52aedac865dba",
-  "git_commit": null,
+  "model_version": "v1-43904491f1ed-efc7dccf",
+  "code_sha256": "43904491f1ed06cc98b6099f2840aef4e2bf24645ff72d9b6874f8ae5c9ca750",
+  "git_commit": "454d19d0ecc8b36ed76fc244465f8e55a0b8bc69",
   "config_sha256": "efc7dccfe837ae545b37bd2e2ac630debc8360e5efdc6bb8c946eb6d8c0dc72a",
   "seed": 42,
   "raw_data_sha256": {

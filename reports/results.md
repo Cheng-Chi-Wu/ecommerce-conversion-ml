@@ -30,9 +30,21 @@ and **348 false negatives**. The approximate 95% day-block bootstrap
 interval for selected-model AP is **[0.1996, 0.2890]** (100 replicates).
 
 Boosting status: **Skipped: no usable XGBoost/LightGBM runtime**.
-The installed XGBoost wheel could not load its missing macOS OpenMP runtime (`libomp`). No boosting metrics are invented. Complete parameters, import status and fit times are in
-[model_results.json](reports/model_results.json); cohort errors are in
-[error_slices.csv](reports/error_slices.csv).
+The installed XGBoost wheel could not load its missing macOS OpenMP runtime (`libomp`). Complete parameters, import status and fit times are in
+[model_results.json](model_results.json); cohort errors are in
+[error_slices.csv](error_slices.csv).
+
+## Figures
+
+![Ordered visitor funnel](figures/funnel.png)
+
+![Daily event activity](figures/event_trend.png)
+
+![Selected-model precision-recall curve](figures/precision_recall_curve.png)
+
+![Validation-threshold confusion matrix](figures/confusion_matrix.png)
+
+![Model coefficients](figures/feature_importance.png)
 
 ## Chronological partitions
 
