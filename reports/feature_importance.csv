@@ -1,0 +1,11 @@
+feature,importance
+unknown_category_views_24h,0.03482094199498262
+repeat_views_24h,0.05410375847554507
+views_1h,0.09773525023578436
+category_diversity_24h,0.12383472198657398
+last_session_duration_minutes,0.1657921986636361
+previous_transactions,0.24534074415778845
+cart_additions_24h,0.35123030159919055
+hours_since_last_event,0.4209542129406057
+unique_items_viewed_24h,0.42811376811119706
+views_24h,0.8902121776190801

@@ -1,0 +1,114 @@
+{
+  "checked_at_utc": "2026-10-09T23:19:57.413059+00:00",
+  "checks": {
+    "sqlite": {
+      "integrity": "ok",
+      "foreign_key_violations": 0,
+      "row_counts": {
+        "events": 2755641,
+        "item_properties": 20275902,
+        "categories": 1669,
+        "category_history": 788214,
+        "event_categories": 2755641
+      },
+      "future_category_assignments": 0
+    },
+    "raw_fingerprints_match": true,
+    "readable_artifacts": {
+      "json": [
+        "data_quality.json",
+        "error_analysis.json",
+        "feature_audit.json",
+        "model_results.json",
+        "run_manifest.json",
+        "sql_validation.json",
+        "verification.json"
+      ],
+      "csv_rows": {
+        "01_funnel.csv": 3,
+        "test_metrics.csv": 3,
+        "error_slices.csv": 9,
+        "calibration_bins.csv": 10,
+        "feature_importance.csv": 10,
+        "05_trends.csv": 160,
+        "04_product_category.csv": 236201,
+        "03_returning_visitors.csv": 2,
+        "daily_topk.csv": 28,
+        "validation_metrics.csv": 3,
+        "02_conversion.csv": 3
+      },
+      "figure_dimensions": {
+        "funnel": [
+          1120,
+          560
+        ],
+        "event_trend": [
+          1400,
+          840
+        ],
+        "confusion_matrix": [
+          600,
+          500
+        ],
+        "precision_recall_curve": [
+          800,
+          500
+        ],
+        "feature_importance": [
+          900,
+          500
+        ]
+      },
+      "snapshots": 1634383
+    },
+    "model": {
+      "version": "v1-8b6b09610042-efc7dccf",
+      "features": [
+        "views_1h",
+        "views_24h",
+        "unique_items_viewed_24h",
+        "repeat_views_24h",
+        "cart_additions_24h",
+        "last_session_duration_minutes",
+        "category_diversity_24h",
+        "unknown_category_views_24h",
+        "previous_transactions",
+        "hours_since_last_event"
+      ],
+      "test_rows_checked": 313534,
+      "metrics_reconcile": true,
+      "numerical_verification": {
+        "all_test_scores_finite": true,
+        "persisted_prediction_parity": true,
+        "runtime_warnings": [
+          "divide by zero encountered in matmul",
+          "invalid value encountered in matmul",
+          "overflow encountered in matmul"
+        ],
+        "independent_einsum_probability_max_difference": 1.1102230246251565e-16,
+        "solver_iterations": 20
+      }
+    },
+    "notebooks": {
+      "01_customer_journey.ipynb": {
+        "executed_code_cells": 5,
+        "errors": 0
+      },
+      "02_conversion_model.ipynb": {
+        "executed_code_cells": 6,
+        "errors": 0
+      }
+    },
+    "readme_links": "ok",
+    "git": {
+      "repository_initialized": true,
+      "exclusion_rules_verified": true,
+      "status": "?? .github/\n?? .gitignore\n?? DATA_SOURCE.md\n?? LICENSE\n?? PORTFOLIO.md\n?? README.md\n?? data/\n?? notebooks/\n?? pytest.ini\n?? reports/\n?? requirements-lock.txt\n?? requirements-notebooks.txt\n?? requirements.txt\n?? sql/\n?? src/\n?? tests/"
+    },
+    "pytest": {
+      "returncode": 0,
+      "output": ".................                                                        [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:64\n  /Users/smarkwu/Documents/ecommerce-conversion-ml/.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'\n    prop = Group((name + Suppress(\"=\") + comma_separated(value)) | oneOf(_CONSTANTS))\n\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n  /Users/smarkwu/Documents/ecommerce-conversion-ml/.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n    parse = parser.parseString(pattern)\n\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n  /Users/smarkwu/Documents/ecommerce-conversion-ml/.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n    parser.resetCache()\n\n.venv/lib/python3.9/site-packages/matplotlib/_mathtext.py:45\n  /Users/smarkwu/Documents/ecommerce-conversion-ml/.venv/lib/python3.9/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'\n    ParserElement.enablePackrat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n17 passed, 14 warnings in 2.07s"
+    }
+  },
+  "all_checks_passed": true
+}

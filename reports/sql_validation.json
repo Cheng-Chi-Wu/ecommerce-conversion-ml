@@ -1,0 +1,11 @@
+{
+  "nonempty_queries": [
+    "01_funnel",
+    "02_conversion",
+    "03_returning_visitors",
+    "04_product_category",
+    "05_trends"
+  ],
+  "ordered_funnel_monotonic": true,
+  "daily_rows": 139
+}

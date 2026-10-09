@@ -1,0 +1,132 @@
+{
+  "selected_model": "Logistic Regression",
+  "slices_overlap": true,
+  "slices": [
+    {
+      "slice": "all",
+      "rows": 313534,
+      "positives": 430,
+      "true_positives": 82,
+      "false_positives": 47,
+      "false_negatives": 348,
+      "true_negatives": 313057,
+      "precision": 0.6356589147286822,
+      "recall": 0.19069767441860466,
+      "pr_auc_ap": 0.2392221350609786,
+      "roc_auc": 0.8857752368779761
+    },
+    {
+      "slice": "visitor_seen_in_train",
+      "rows": 19813,
+      "positives": 102,
+      "true_positives": 20,
+      "false_positives": 23,
+      "false_negatives": 82,
+      "true_negatives": 19688,
+      "precision": 0.46511627906976744,
+      "recall": 0.19607843137254902,
+      "pr_auc_ap": 0.29066780381032514,
+      "roc_auc": 0.9362135803537588
+    },
+    {
+      "slice": "visitor_not_seen_in_train",
+      "rows": 293721,
+      "positives": 328,
+      "true_positives": 62,
+      "false_positives": 24,
+      "false_negatives": 266,
+      "true_negatives": 293369,
+      "precision": 0.7209302325581395,
+      "recall": 0.18902439024390244,
+      "pr_auc_ap": 0.22865319760975203,
+      "roc_auc": 0.8675264127953575
+    },
+    {
+      "slice": "cart_in_prior_24h",
+      "rows": 7923,
+      "positives": 194,
+      "true_positives": 77,
+      "false_positives": 47,
+      "false_negatives": 117,
+      "true_negatives": 7682,
+      "precision": 0.6209677419354839,
+      "recall": 0.39690721649484534,
+      "pr_auc_ap": 0.42458075533722295,
+      "roc_auc": 0.8880778377859261
+    },
+    {
+      "slice": "no_cart_in_prior_24h",
+      "rows": 305611,
+      "positives": 236,
+      "true_positives": 5,
+      "false_positives": 0,
+      "false_negatives": 231,
+      "true_negatives": 305375,
+      "precision": 1.0,
+      "recall": 0.0211864406779661,
+      "pr_auc_ap": 0.1035581571502799,
+      "roc_auc": 0.807642132138174
+    },
+    {
+      "slice": "previous_purchase",
+      "rows": 4426,
+      "positives": 204,
+      "true_positives": 82,
+      "false_positives": 47,
+      "false_negatives": 122,
+      "true_negatives": 4175,
+      "precision": 0.6356589147286822,
+      "recall": 0.4019607843137255,
+      "pr_auc_ap": 0.4762826088152234,
+      "roc_auc": 0.885369353804999
+    },
+    {
+      "slice": "no_previous_purchase",
+      "rows": 309108,
+      "positives": 226,
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 226,
+      "true_negatives": 308882,
+      "precision": 0,
+      "recall": 0.0,
+      "pr_auc_ap": 0.01278269731438107,
+      "roc_auc": 0.7965613841250945
+    },
+    {
+      "slice": "unknown_category_views",
+      "rows": 44415,
+      "positives": 109,
+      "true_positives": 66,
+      "false_positives": 27,
+      "false_negatives": 43,
+      "true_negatives": 44279,
+      "precision": 0.7096774193548387,
+      "recall": 0.6055045871559633,
+      "pr_auc_ap": 0.5621326339719919,
+      "roc_auc": 0.9921606492296899
+    },
+    {
+      "slice": "no_unknown_category_views",
+      "rows": 269119,
+      "positives": 321,
+      "true_positives": 16,
+      "false_positives": 20,
+      "false_negatives": 305,
+      "true_negatives": 268778,
+      "precision": 0.4444444444444444,
+      "recall": 0.04984423676012461,
+      "pr_auc_ap": 0.11204489427250146,
+      "roc_auc": 0.8436778510372669
+    }
+  ],
+  "brier_score_uncalibrated": 0.09710536494895149,
+  "uncertainty": {
+    "method": "100 UTC-day block bootstrap replicates; seed 42",
+    "pr_auc_ap_95pct_interval": [
+      0.19957666413447211,
+      0.28901719483837013
+    ],
+    "limitation": "Approximate temporal uncertainty; repeated visitors across days remain correlated"
+  }
+}

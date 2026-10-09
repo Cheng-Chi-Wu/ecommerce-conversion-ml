@@ -1,0 +1,45 @@
+{
+  "artifact_schema_version": 1,
+  "model_version": "v1-8b6b09610042-efc7dccf",
+  "code_sha256": "8b6b0961004216d9dde16e72a7d8b89f8adcd81fd346f4e490c52aedac865dba",
+  "git_commit": null,
+  "config_sha256": "efc7dccfe837ae545b37bd2e2ac630debc8360e5efdc6bb8c946eb6d8c0dc72a",
+  "seed": 42,
+  "raw_data_sha256": {
+    "events.csv": "3745aa83238b1e6d44d8fda209807899f420084398f94ddf745f3cbcfecbf9e7",
+    "item_properties_part1.csv": "30aad5aeca58b2dc27dcc73e1708565f5818e45adb3eb57401f91e87355b0b81",
+    "item_properties_part2.csv": "d5e7d1a91dc40f522aeb596b267e6c87d8aed689a7192d12369cfb165eb987e5",
+    "category_tree.csv": "94e865eb0a3d48cbbfe3b79079018dd92509315c88f5fd8d00d0b4b5af434f5b"
+  },
+  "environment": {
+    "python": "3.9.6",
+    "platform": "macOS-26.2-arm64-arm-64bit",
+    "packages": {
+      "numpy": "2.0.2",
+      "pandas": "2.3.3",
+      "matplotlib": "3.9.4",
+      "scikit-learn": "1.6.1",
+      "joblib": "1.5.3"
+    }
+  },
+  "features": [
+    "views_1h",
+    "views_24h",
+    "unique_items_viewed_24h",
+    "repeat_views_24h",
+    "cart_additions_24h",
+    "last_session_duration_minutes",
+    "category_diversity_24h",
+    "unknown_category_views_24h",
+    "previous_transactions",
+    "hours_since_last_event"
+  ],
+  "prediction_contract": "One active visitor at UTC midnight; purchase in (t,t+24h]",
+  "offline_evidence_checks": {
+    "beats_naive_average_precision": true,
+    "top_1pct_beats_test_prevalence": true,
+    "point_in_time_checks_passed": true
+  },
+  "brier_score_uncalibrated": 0.09710536494895149,
+  "production_status": "Offline portfolio prototype; no deployed intervention"
+}

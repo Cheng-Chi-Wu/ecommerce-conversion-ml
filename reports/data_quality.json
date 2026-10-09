@@ -1,0 +1,136 @@
+{
+  "files": {
+    "events.csv": {
+      "bytes": 94237913,
+      "sha256": "3745aa83238b1e6d44d8fda209807899f420084398f94ddf745f3cbcfecbf9e7",
+      "rows": 2756101,
+      "columns": [
+        "timestamp",
+        "visitorid",
+        "event",
+        "itemid",
+        "transactionid"
+      ],
+      "dtypes": {
+        "timestamp": "int64",
+        "visitorid": "int64",
+        "event": "object",
+        "itemid": "int64",
+        "transactionid": "Int64"
+      },
+      "missing": {
+        "timestamp": 0,
+        "visitorid": 0,
+        "event": 0,
+        "itemid": 0,
+        "transactionid": 2733644
+      },
+      "exact_duplicate_rows": 460,
+      "timestamp_min": 1430622004384,
+      "timestamp_max": 1442545187788,
+      "utc_start": "2015-05-03 03:00:04.384000+00:00",
+      "utc_end": "2015-09-18 02:59:47.788000+00:00",
+      "event_distribution": {
+        "view": 2664312,
+        "addtocart": 69332,
+        "transaction": 22457
+      },
+      "unique_visitors": 1407580,
+      "unique_items": 235061,
+      "unique_transaction_ids": 17672
+    },
+    "item_properties_part1.csv": {
+      "bytes": 484315749,
+      "sha256": "30aad5aeca58b2dc27dcc73e1708565f5818e45adb3eb57401f91e87355b0b81",
+      "rows": 10999999,
+      "columns": [
+        "timestamp",
+        "itemid",
+        "property",
+        "value"
+      ],
+      "missing": {
+        "timestamp": 0,
+        "itemid": 0,
+        "property": 0,
+        "value": 0
+      },
+      "dtypes": {
+        "timestamp": "int64",
+        "itemid": "int64",
+        "property": "object",
+        "value": "object"
+      },
+      "timestamp_min": 1431226800000,
+      "timestamp_max": 1442113200000,
+      "utc_start": "2015-05-10 03:00:00+00:00",
+      "utc_end": "2015-09-13 03:00:00+00:00",
+      "exact_duplicate_rows": 0
+    },
+    "item_properties_part2.csv": {
+      "bytes": 408929907,
+      "sha256": "d5e7d1a91dc40f522aeb596b267e6c87d8aed689a7192d12369cfb165eb987e5",
+      "rows": 9275903,
+      "columns": [
+        "timestamp",
+        "itemid",
+        "property",
+        "value"
+      ],
+      "missing": {
+        "timestamp": 0,
+        "itemid": 0,
+        "property": 0,
+        "value": 0
+      },
+      "dtypes": {
+        "timestamp": "int64",
+        "itemid": "int64",
+        "property": "object",
+        "value": "object"
+      },
+      "timestamp_min": 1431226800000,
+      "timestamp_max": 1442113200000,
+      "utc_start": "2015-05-10 03:00:00+00:00",
+      "utc_end": "2015-09-13 03:00:00+00:00",
+      "exact_duplicate_rows": 0
+    },
+    "category_tree.csv": {
+      "bytes": 14454,
+      "sha256": "94e865eb0a3d48cbbfe3b79079018dd92509315c88f5fd8d00d0b4b5af434f5b",
+      "rows": 1669,
+      "columns": [
+        "categoryid",
+        "parentid"
+      ],
+      "dtypes": {
+        "categoryid": "int64",
+        "parentid": "Int64"
+      },
+      "missing": {
+        "categoryid": 0,
+        "parentid": 25
+      },
+      "exact_duplicate_rows": 0
+    }
+  },
+  "cleaning": {
+    "events_rows_after_exact_deduplication": 2755641,
+    "property_global_exact_duplicates_retained": 0
+  },
+  "validation": {
+    "transactions_missing_id": 0,
+    "nontransactions_with_id": 0,
+    "category_orphan_parents": 0,
+    "conflicting_category_changes": 0,
+    "event_category_coverage_asof": 0.7616282382211617,
+    "category_history_unknown_tree_ids": 167,
+    "sqlite_row_counts": {
+      "events": 2755641,
+      "item_properties": 20275902,
+      "categories": 1669,
+      "category_history": 788214,
+      "event_categories": 2755641
+    }
+  }
+}

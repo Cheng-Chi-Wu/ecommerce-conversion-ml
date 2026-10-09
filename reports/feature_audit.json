@@ -1,0 +1,58 @@
+{
+  "features": [
+    "views_1h",
+    "views_24h",
+    "unique_items_viewed_24h",
+    "repeat_views_24h",
+    "cart_additions_24h",
+    "last_session_duration_minutes",
+    "category_diversity_24h",
+    "unknown_category_views_24h",
+    "previous_transactions",
+    "hours_since_last_event"
+  ],
+  "rows": 1634383,
+  "positive_rate": 0.0013638174161136037,
+  "observation_policy": "Fixed UTC midnight; active in preceding 24h",
+  "feature_window": "(t-24h,t]; historical transaction counts and last-session history through t",
+  "label_window": "(t,t+24h]",
+  "splits": {
+    "purged": {
+      "rows": 25349,
+      "positives": 35,
+      "positive_rate": 0.0013807250779123436,
+      "observation_start": "2015-07-24 00:00:00+00:00",
+      "observation_end": "2015-08-20 00:00:00+00:00",
+      "label_end_max": "2015-08-21 00:00:00+00:00"
+    },
+    "test": {
+      "rows": 313534,
+      "positives": 430,
+      "positive_rate": 0.0013714621061830614,
+      "observation_start": "2015-08-21 00:00:00+00:00",
+      "observation_end": "2015-09-17 00:00:00+00:00",
+      "label_end_max": "2015-09-18 00:00:00+00:00"
+    },
+    "train": {
+      "rows": 978396,
+      "positives": 1359,
+      "positive_rate": 0.0013890081316767443,
+      "observation_start": "2015-05-05 00:00:00+00:00",
+      "observation_end": "2015-07-23 00:00:00+00:00",
+      "label_end_max": "2015-07-24 00:00:00+00:00"
+    },
+    "validation": {
+      "rows": 317104,
+      "positives": 405,
+      "positive_rate": 0.001277183510772491,
+      "observation_start": "2015-07-25 00:00:00+00:00",
+      "observation_end": "2015-08-19 00:00:00+00:00",
+      "label_end_max": "2015-08-20 00:00:00+00:00"
+    }
+  },
+  "validation": {
+    "point_in_time_checks_passed": true,
+    "train_validation_visitor_overlap": 19703,
+    "train_test_visitor_overlap": 14204
+  }
+}
