@@ -2,6 +2,36 @@
 
 Implementation details for the SQL analysis and next-day purchase model.
 
+## Pipeline
+
+The pieces communicate through saved files. [pipeline.py](../src/pipeline.py)
+calls the stages in order; each stage reads the outputs it needs from earlier
+stages. The SQL analysis and feature construction both start from the cleaned
+database. The model does not train on the aggregate SQL report tables.
+
+```mermaid
+flowchart LR
+    A[Original CSVs] --> B[Cleaned SQLite database]
+    B --> C[SQL summaries and plots]
+    B --> D[Visitor-day features and labels]
+    D --> E[Model comparison and saved predictions]
+    C --> F[Results report]
+    E --> F
+```
+
+| Stage | Reads | Writes | Code |
+| --- | --- | --- | --- |
+| `ingest` | Four CSVs in `data/raw/` | `data/processed/retailrocket.sqlite`, data audit | [ingest.py](../src/ingest.py) |
+| `sql` | SQLite database and the queries in `sql/` | Aggregate CSVs and journey plots in `reports/` | [analytics.py](../src/analytics.py) |
+| `features` | Events with their historical categories | `data/processed/visitor_snapshots.pkl`, split audit | [features.py](../src/features.py) |
+| `train` | Snapshots with train/validation/test assignments | Model bundle, test predictions, metrics and model plots | [modeling.py](../src/modeling.py) |
+| `report` | Data audit, SQL outputs, model outputs and snapshots | Error tables, run metadata, detailed results and README summary | [reporting.py](../src/reporting.py) · [evaluation.py](../src/evaluation.py) |
+
+The notebooks provide a walkthrough after these files have been generated.
+They run SQL and inspect model results; they do not replace the training stage.
+The saved model includes its preprocessing, so batch scoring uses the same
+transformation as training.
+
 ## Database schema
 
 All timestamps are integer Unix **milliseconds in UTC**. Nullable transaction

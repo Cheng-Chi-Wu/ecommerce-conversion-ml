@@ -69,6 +69,7 @@ information it could not have had then.
 | How are the funnel and abandonment measured? | [Analytics notebook](notebooks/01_customer_journey.ipynb) · [Funnel SQL](sql/01_funnel.sql) · [Abandonment SQL](sql/02_conversion.sql) |
 | How are past behavior and future labels separated? | [Feature construction](src/features.py) · [Temporal boundary tests](tests/test_features.py) |
 | How are models compared and selected? | [Model notebook](notebooks/02_conversion_model.ipynb) · [Training and evaluation](src/modeling.py) |
+| How do the pieces fit together? | [Pipeline entry point](src/pipeline.py) · [Stage inputs and outputs](docs/technical_notes.md#pipeline) |
 
 Start with the notebooks for a walkthrough of the results. The Python code is
 in `src/`, and the analysis queries are in `sql/`. Reports contain summary tables
@@ -104,6 +105,18 @@ so the reported performance still has considerable uncertainty.
 A useful next step is to try predictions more often than once a day, compare
 them on validation data, and check the chosen approach on a new future test
 period. That comparison and a customer-contact experiment are still future work.
+
+## Putting the pieces together
+
+I understood data processing, SQL, machine learning and how to read the plots.
+The harder part was connecting them into a complete project: getting the data
+ready, passing it into the model, and bringing the results back into the analysis.
+That integration was the main learning focus here.
+
+I used AI assistance to organize the overall workflow, explain the pipeline,
+help with the README and code comments, and suggest analyses and charts.
+The [pipeline notes](docs/technical_notes.md#pipeline) show how each stage passes
+its outputs to the next.
 
 ## Data and license
 
