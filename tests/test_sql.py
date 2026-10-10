@@ -41,3 +41,22 @@ def test_every_analytics_query_executes_and_trends_reconcile(database):
     trends = pd.read_sql_query((ROOT/'sql/05_trends.sql').read_text(), database)
     assert trends.query("grain == 'daily'").events.sum() == 13
     assert trends.query("grain == 'weekly'").events.sum() == 13
+
+
+def test_category_detail_stays_local_and_report_is_a_summary(database, tmp_path, monkeypatch):
+    from src import analytics
+    db = tmp_path / 'events.sqlite'
+    database.commit()
+    with sqlite3.connect(db) as destination:
+        database.backup(destination)
+    processed, reports, figures = [tmp_path / folder for folder in ['processed', 'reports', 'figures']]
+    reports.mkdir()
+    figures.mkdir()
+    for name, value in [('DB', db), ('PROCESSED', processed), ('REPORTS', reports), ('FIGURES', figures)]:
+        monkeypatch.setattr(analytics, name, value)
+    analytics.run_analytics()
+    detail = pd.read_csv(processed / '04_product_category_full.csv')
+    summary = pd.read_csv(reports / '04_product_category.csv')
+    assert 'summary_group' not in detail
+    assert set(summary.summary_group) == {'top_items', 'unknown_category'}
+    assert summary.loc[summary.summary_group.eq('unknown_category'), 'transaction_events'].iloc[0] == 4

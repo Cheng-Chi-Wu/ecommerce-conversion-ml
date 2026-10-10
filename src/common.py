@@ -2,6 +2,8 @@
 import json
 from pathlib import Path
 
+from .publication import sanitize_public_data
+
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / 'data/raw'
 PROCESSED = ROOT / 'data/processed'
@@ -14,7 +16,7 @@ SEED = 42
 
 
 def save_json(path, value):
-    path.write_text(json.dumps(value, indent=2, allow_nan=False) + '\n')
+    path.write_text(json.dumps(sanitize_public_data(value), indent=2, allow_nan=False) + '\n')
 
 
 def markdown_table(frame):

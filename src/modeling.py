@@ -20,6 +20,7 @@ from sklearn.preprocessing import FunctionTransformer, StandardScaler
 from .common import FIGURES, PROCESSED, REPORTS, SEED, save_json
 from .features import FEATURES, validate_snapshots
 from .plots import plot_precision_recall
+from .publication import sanitize_text
 
 
 def select_threshold(y, scores):
@@ -92,7 +93,8 @@ def train_models():
             except Exception as error:
                 # Restrict this catch to optional import/load failures, never fit
                 # failures. Installed wheels can still lack a native runtime.
-                optional_import_errors[module] = f'{type(error).__name__}: {str(error).strip()}'
+                optional_import_errors[module] = sanitize_text(
+                    f'{type(error).__name__}: {str(error).strip()}')
     if XGBClassifier is not None:
         models['XGBoost'] = XGBClassifier(
             n_estimators=250, max_depth=4, learning_rate=.06,

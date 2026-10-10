@@ -26,3 +26,5 @@ credentials*
 
 # Personal resume drafts
 .local/
+# Full category/item detail is a local pipeline output.
+data/processed/04_product_category_full.csv

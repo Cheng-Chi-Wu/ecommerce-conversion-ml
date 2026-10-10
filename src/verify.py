@@ -23,8 +23,10 @@ from scipy.special import expit
 from .common import ROOT, DB, RAW, PROCESSED, REPORTS, FIGURES, DAY, save_json
 from .features import FEATURES, validate_snapshots, assign_time_splits
 from .ingest import source_fingerprint
+from .analytics import category_summary
 from .modeling import evaluate
 from .predict import score_features
+from .publication import sanitize_text
 
 
 def verify():
@@ -53,6 +55,16 @@ def verify():
         json.loads(path.read_text())
         json_files.append(path.name)
     csv_rows = {path.name: len(pd.read_csv(path, low_memory=False)) for path in REPORTS.glob('*.csv')}
+    full_categories = pd.read_csv(PROCESSED/'04_product_category_full.csv', dtype={'entity': str})
+    public_categories = pd.read_csv(REPORTS/'04_product_category.csv',
+                                    dtype={'entity': str, 'rank': 'Int64'})
+    pd.testing.assert_frame_equal(public_categories, category_summary(full_categories))
+    category_metadata = json.loads((REPORTS/'category_summary.json').read_text())
+    assert category_metadata['full_rows'] == len(full_categories)
+    assert category_metadata['summary_rows'] == len(public_categories)
+    results['checks']['category_summary'] = {
+        'full_rows_local': len(full_categories), 'public_rows': len(public_categories),
+        'fixed_ranking_reconciles': True}
     image_sizes = {}
     for name in ['funnel', 'event_trend', 'confusion_matrix', 'precision_recall_curve', 'feature_importance']:
         with Image.open(FIGURES/f'{name}.png') as im:
@@ -151,10 +163,10 @@ def verify():
     lock = subprocess.run([sys.executable, '-m', 'pip', 'freeze'], capture_output=True, text=True, check=True)
     (ROOT/'requirements-lock.txt').write_text(
         '# Captured local environment: macOS ARM64, Python 3.9.6.\n'
-        '# Optional XGBoost is installed but lacks libomp in this run.\n'+lock.stdout)
+        '# Optional XGBoost is installed but lacks libomp in this run.\n'+sanitize_text(lock.stdout))
     results['all_checks_passed'] = True
     save_json(REPORTS/'verification.json', results)
-    print(f'All checks passed; saved {REPORTS / "verification.json"}.', flush=True)
+    print(sanitize_text(f'All checks passed; saved {REPORTS / "verification.json"}.'), flush=True)
     return results
 
 

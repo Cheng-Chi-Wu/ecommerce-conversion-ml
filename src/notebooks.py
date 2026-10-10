@@ -3,6 +3,7 @@ import argparse
 import os
 
 from .common import ROOT, PROCESSED
+from .publication import sanitize_text
 
 
 SETUP = '''from pathlib import Path
@@ -65,8 +66,8 @@ display(Image(filename=str(REPORTS / 'figures/funnel.png')))
                'Unknown categories are retained. Restrict a descriptive category table to '
                'at least 1,000 observed visitors; rate denominators overlap between categories.'),
             code("""performance = pd.read_csv(REPORTS / '04_product_category.csv', dtype={'entity': str})
-eligible = performance.query("grain == 'category' and entity != 'unknown' and visitors >= 1000")
-display(eligible.nlargest(5, 'transaction_events'))
+eligible = performance.query("summary_group == 'categories_1000_visitors'").sort_values('rank')
+display(eligible.head(5).drop(columns=['summary_group', 'rank']))
 display(Image(filename=str(REPORTS / 'figures/event_trend.png')))
 """),
             md('## 5. Product interpretation\n\n'
@@ -168,6 +169,16 @@ def execute_notebooks(name=None):
         client = NotebookClient(notebook, timeout=180, kernel_name='retailrocket',
                                 resources={'metadata': {'path': str(ROOT)}})
         client.execute()
+        # Only saved text outputs are sanitized; code and numeric results stay intact.
+        for cell in notebook.cells:
+            for output in cell.get('outputs', []):
+                if 'text' in output:
+                    output['text'] = sanitize_text(output['text'])
+                for mime, value in output.get('data', {}).items():
+                    if mime.startswith('text/') and isinstance(value, str):
+                        output['data'][mime] = sanitize_text(value)
+                if 'traceback' in output:
+                    output['traceback'] = [sanitize_text(line) for line in output['traceback']]
         nbformat.write(notebook, path)
         assert all(cell.execution_count is not None for cell in notebook.cells if cell.cell_type == 'code')
         assert all(output.output_type != 'error' for cell in notebook.cells if cell.cell_type == 'code'

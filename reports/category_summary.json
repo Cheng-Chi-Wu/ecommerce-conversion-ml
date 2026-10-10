@@ -1,0 +1,13 @@
+{
+  "full_rows": 236201,
+  "summary_rows": 61,
+  "full_output": "data/processed/04_product_category_full.csv",
+  "ranking": "transaction_events descending, numeric entity ID ascending",
+  "groups": {
+    "top_categories": "Top 20 known categories; no visitor filter",
+    "top_items": "Top 20 items; no visitor filter",
+    "categories_1000_visitors": "Top 20 known categories with at least 1000 visitors",
+    "unknown_category": "All events without a historical category; unranked"
+  },
+  "overlap": "Groups overlap; do not add their counts together"
+}

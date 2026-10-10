@@ -17,9 +17,8 @@ This project does not infer prices, revenue, product names or user demographics
 from hashed fields. Category assignments are joined backward in time.
 
 `reports/data_quality.json` records local file sizes, SHA-256 fingerprints,
-observed columns, counts and dates. The source files were found locally in
-`archive/` and moved into `data/raw/`; a second copy was also found in
-`~/Downloads/archive/`. Filenames alone do not prove a dataset version; hashes
+observed columns, counts and dates. The source files were found in
+`<LOCAL_DATA_DIR>` and placed in `data/raw/`. Filenames alone do not prove a dataset version; hashes
 identify the exact local inputs used for this run.
 
 Original code is provided under the MIT license in `LICENSE`. Dataset-derived

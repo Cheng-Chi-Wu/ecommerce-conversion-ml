@@ -32,6 +32,33 @@ They run SQL and inspect model results; they do not replace the training stage.
 The saved model includes its preprocessing, so batch scoring uses the same
 transformation as training.
 
+## Category and item summary
+
+`reports/04_product_category.csv` contains four groups: the top 20 known
+categories, top 20 items, the top 20 known categories with at least 1,000
+visitors, and one unknown-category row. Each ranked group is sorted by
+`transaction_events` descending, then numeric category/item ID ascending for
+ties. Unknown categories are excluded from category rankings and reported
+separately. The visitor-filtered group supports the five-category table in
+the results and analytics notebook. Groups overlap and must not be added together.
+
+| Column | Meaning |
+| --- | --- |
+| `summary_group` | `top_categories`, `top_items`, `categories_1000_visitors` or `unknown_category` |
+| `rank` | Position within a ranked group; blank for unknown categories |
+| `grain` | `category` or `product` (an item) |
+| `entity` | Numeric category/item ID, or `unknown` |
+| `views`, `carts` | View and cart-addition event counts |
+| `transaction_events` | Purchased-item events, not distinct orders |
+| `visitors` | Distinct visitors observed for that entity |
+| `visitor_conversion_rate` | Visitors with a transaction for that entity / all its observed visitors |
+
+Running `python -m src.pipeline sql` also produces the complete category/item
+detail at `data/processed/04_product_category_full.csv`. It is Git-ignored.
+[category_summary.json](../reports/category_summary.json) records the group
+definitions, ranking rule and full/summary row counts. Visitor denominators
+can overlap across items and categories.
+
 ## Database schema
 
 All timestamps are integer Unix **milliseconds in UTC**. Nullable transaction

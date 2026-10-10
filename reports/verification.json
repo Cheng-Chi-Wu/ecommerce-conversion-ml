@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-09T23:44:50.689756+00:00",
+  "checked_at_utc": "2026-10-10T00:16:23.082983+00:00",
   "checks": {
     "sqlite": {
       "integrity": "ok",
@@ -14,8 +14,14 @@
       "future_category_assignments": 0
     },
     "raw_fingerprints_match": true,
+    "category_summary": {
+      "full_rows_local": 236201,
+      "public_rows": 61,
+      "fixed_ranking_reconciles": true
+    },
     "readable_artifacts": {
       "json": [
+        "category_summary.json",
         "data_quality.json",
         "error_analysis.json",
         "feature_audit.json",
@@ -31,7 +37,7 @@
         "calibration_bins.csv": 10,
         "feature_importance.csv": 10,
         "05_trends.csv": 160,
-        "04_product_category.csv": 236201,
+        "04_product_category.csv": 61,
         "03_returning_visitors.csv": 2,
         "daily_topk.csv": 28,
         "validation_metrics.csv": 3,
@@ -62,7 +68,7 @@
       "snapshots": 1634383
     },
     "model": {
-      "version": "v1-43904491f1ed-efc7dccf",
+      "version": "v1-8bb4260965bf-efc7dccf",
       "features": [
         "views_1h",
         "views_24h",
@@ -103,11 +109,11 @@
     "git": {
       "repository_initialized": true,
       "exclusion_rules_verified": true,
-      "status": "M .gitignore\n M DATA_SOURCE.md\n D PORTFOLIO.md\n M README.md\n M notebooks/01_customer_journey.ipynb\n M notebooks/02_conversion_model.ipynb\n M reports/methodology.md\n M reports/results.md\n M reports/run_manifest.json\n M src/evaluation.py\n M src/notebooks.py\n M src/reporting.py\n?? docs/"
+      "status": "M .gitignore\n M DATA_SOURCE.md\n M LICENSE\n M docs/technical_notes.md\n M notebooks/01_customer_journey.ipynb\n M notebooks/02_conversion_model.ipynb\n M reports/04_product_category.csv\n M reports/model_results.json\n M reports/run_manifest.json\n M reports/verification.json\n M src/analytics.py\n M src/common.py\n M src/modeling.py\n M src/notebooks.py\n M src/reporting.py\n M src/verify.py\n M tests/test_sql.py\n?? reports/category_summary.json\n?? src/publication.py\n?? tests/test_category_summary.py\n?? tests/test_publication.py"
     },
     "pytest": {
       "returncode": 0,
-      "output": ".................                                                        [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:64\n  /Users/smarkwu/Documents/ecommerce-conversion-ml/.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'\n    prop = Group((name + Suppress(\"=\") + comma_separated(value)) | oneOf(_CONSTANTS))\n\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n  /Users/smarkwu/Documents/ecommerce-conversion-ml/.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n    parse = parser.parseString(pattern)\n\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n  /Users/smarkwu/Documents/ecommerce-conversion-ml/.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n    parser.resetCache()\n\n.venv/lib/python3.9/site-packages/matplotlib/_mathtext.py:45\n  /Users/smarkwu/Documents/ecommerce-conversion-ml/.venv/lib/python3.9/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'\n    ParserElement.enablePackrat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n17 passed, 14 warnings in 2.13s"
+      "output": "......................                                                   [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:64\n  <LOCAL_ENV>/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'\n    prop = Group((name + Suppress(\"=\") + comma_separated(value)) | oneOf(_CONSTANTS))\n\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85\n  <LOCAL_ENV>/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n    parse = parser.parseString(pattern)\n\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n.venv/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89\n  <LOCAL_ENV>/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n    parser.resetCache()\n\n.venv/lib/python3.9/site-packages/matplotlib/_mathtext.py:45\n  <LOCAL_ENV>/lib/python3.9/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'\n    ParserElement.enablePackrat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n22 passed, 14 warnings in 2.56s"
     }
   },
   "all_checks_passed": true

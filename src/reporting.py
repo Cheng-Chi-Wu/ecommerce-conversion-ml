@@ -3,7 +3,7 @@ import json
 
 import pandas as pd
 
-from .common import ROOT, REPORTS, PROCESSED, FIGURES, markdown_table
+from .common import ROOT, REPORTS, PROCESSED, FIGURES, markdown_table, save_json
 from .evaluation import audit_model
 from .plots import plot_precision_recall
 
@@ -12,6 +12,9 @@ END = '<!-- RESULTS:END -->'
 
 
 def write_results():
+    # Refresh existing reports through the same sanitizer without retraining.
+    for path in REPORTS.glob('*.json'):
+        save_json(path, json.loads(path.read_text()))
     audit_model()
     data = json.loads((REPORTS/'data_quality.json').read_text())
     audit = json.loads((REPORTS/'feature_audit.json').read_text())
@@ -103,9 +106,8 @@ AP means average precision; the top-1% column measures ranking at a fixed capaci
                            'first observation UTC': row['observation_start'],
                            'last observation UTC': row['observation_end']})
     category_performance = pd.read_csv(REPORTS/'04_product_category.csv', dtype={'entity': str})
-    leaders = category_performance.loc[category_performance.grain.eq('category') &
-                                      category_performance.entity.ne('unknown') &
-                                      category_performance.visitors.ge(1000)].nlargest(5, 'transaction_events')
+    leaders = category_performance.loc[
+        category_performance.summary_group.eq('categories_1000_visitors')].sort_values('rank').head(5)
     leaders = leaders[['entity', 'views', 'carts', 'transaction_events', 'visitors', 'visitor_conversion_rate']]
     leaders['visitor_conversion_rate'] = leaders.visitor_conversion_rate.map(lambda x: f'{x:.2%}')
     (REPORTS/'results.md').write_text('# Results and interpretation\n\n' +
